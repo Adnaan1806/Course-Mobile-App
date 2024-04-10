@@ -13,6 +13,17 @@ public class DBhelper extends SQLiteOpenHelper {
         super(context, "register.db", null, 1);
 
     }
+
+    @Override
+    public void onCreate(SQLiteDatabase sqLiteDatabase) {
+
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+
+    }
+}
 //    @Override
 //    public void onCreate(SQLiteDatabase RegisterDB) {
 //        RegisterDB.execSQL("create table users(username Text, passwo)")
