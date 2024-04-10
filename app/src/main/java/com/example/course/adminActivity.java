@@ -14,9 +14,9 @@ public class adminActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_login);
 
-        adminUsername = (EditText) findViewById(R.id.adminUsername);
-        adminPassword = (EditText) findViewById(R.id.adminPassword);
-        btn_admin = (Button) findViewById(R.id.btn_admin);
+//        adminUsername = (EditText) findViewById(R.id.adminUsername);
+//        adminPassword = (EditText) findViewById(R.id.adminPassword);
+//        btn_admin = (Button) findViewById(R.id.btn_admin);
     }
 
 

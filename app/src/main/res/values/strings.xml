@@ -6,4 +6,6 @@
         <item name="cornerSize">80dp</item>
     </style>
 
+    <string name="Branch_name">Dropdown menu</string>
+
 </resources>
