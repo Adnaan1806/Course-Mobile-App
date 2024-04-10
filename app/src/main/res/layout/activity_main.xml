@@ -55,11 +55,26 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="54dp"
-        android:layout_marginEnd="221dp"
-
-        android:layout_marginBottom="139dp"
+        android:layout_marginEnd="227dp"
+        android:layout_marginBottom="141dp"
         android:background="@color/white"
         android:text="Guest"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/adminButton"
+        android:layout_width="wrap_content"
+        android:layout_height="58dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="227dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="141dp"
+        android:background="@color/white"
+        android:text="Admin"
+        android:onClick="onClickRegister"
         android:textColor="@color/black"
         android:textStyle="bold" />
 
@@ -70,14 +85,16 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="227dp"
+        android:layout_marginStart="54dp"
         android:layout_marginEnd="48dp"
-        android:layout_marginBottom="141dp"
+        android:layout_marginBottom="44dp"
         android:background="@color/white"
         android:text="Register Now"
         android:onClick="onClickRegister"
         android:textColor="@color/black"
         android:textStyle="bold" />
+
+
 
 
 </RelativeLayout>

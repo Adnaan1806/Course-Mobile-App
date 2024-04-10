@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Course</string>
+
+    <style name="ShapeAppearance.MaterialComponents.LargeComponent" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">80dp</item>
+    </style>
+
 </resources>

@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/bg"
     android:layout_height="match_parent"
     tools:context=".user_info">
 
@@ -10,8 +11,8 @@
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/brown"
-    android:alpha="0.9"/>
+    android:background="@color/black"
+    android:alpha="0.5"/>
 
 <androidx.cardview.widget.CardView
     android:layout_width="match_parent"
@@ -21,8 +22,8 @@
     app:cardCornerRadius="18dp">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="30dp">
 
@@ -44,7 +45,7 @@
 
         <View
             android:layout_width="wrap_content"
-            android:layout_height="13dp"/>
+            android:layout_height="10dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -62,7 +63,7 @@
 
         <View
             android:layout_width="wrap_content"
-            android:layout_height="15dp"/>
+            android:layout_height="10dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -80,7 +81,7 @@
 
         <View
             android:layout_width="wrap_content"
-            android:layout_height="12dp"/>
+            android:layout_height="10dp"/>
 
 
         <RelativeLayout
@@ -114,7 +115,7 @@
 
         <View
             android:layout_width="wrap_content"
-            android:layout_height="17dp"/>
+            android:layout_height="10dp"/>
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -145,7 +146,7 @@
 
         <View
             android:layout_width="wrap_content"
-            android:layout_height="12dp"/>
+            android:layout_height="10dp"/>
 
 
         <RelativeLayout
@@ -180,7 +181,7 @@
 
         <View
             android:layout_width="wrap_content"
-            android:layout_height="15dp"/>
+            android:layout_height="13dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -225,7 +226,7 @@
 
         <View
             android:layout_width="wrap_content"
-            android:layout_height="15dp"/>
+            android:layout_height="10dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -243,17 +244,45 @@
 
         <View
             android:layout_width="wrap_content"
-            android:layout_height="15dp"/>
+            android:layout_height="8dp"/>
 
         <Button
             android:layout_width="match_parent"
             android:id="@+id/registerUserButton"
-            android:layout_height="70dp"
+            android:layout_height="60dp"
             android:text="REGISTER"
             android:textStyle="bold"
             android:background="@color/brown"
             android:textColor="@color/white"
             app:cornerRadius="32dp" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="15dp"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="19dp"
+                android:layout_marginLeft="113dp"
+                android:layout_marginStart="0dp"
+                android:text="Already have an account?"
+                android:alpha="0.8"/>
+
+            <Button
+                android:layout_width="70dp"
+                android:id="@+id/loginButton"
+                android:layout_height="20dp"
+                android:layout_alignParentEnd="true"
+                android:text="Login"
+                android:textStyle="bold"
+                android:layout_marginRight="110dp"
+                android:background="@color/brown"
+                android:textColor="@color/white"/>
+        </RelativeLayout>
 
 
     </LinearLayout>

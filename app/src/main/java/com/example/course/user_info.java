@@ -19,6 +19,7 @@ import java.util.ArrayList;
 public class user_info extends AppCompatActivity {
 
     private Button registerButton;
+    private Button loginButton;
     private Spinner spinner;
 
     EditText name, email, phone, address, city, dob, nic, gender;
@@ -68,6 +69,16 @@ public class user_info extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(user_info.this, register_course.class);
+                startActivity(intent);
+
+            }
+        });
+
+        loginButton = findViewById(R.id.loginButton);
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(user_info.this, Login.class);
                 startActivity(intent);
 
             }
