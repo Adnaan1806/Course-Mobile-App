@@ -9,23 +9,6 @@
     android:layout_height="match_parent"
     tools:context=".AddCourses">
 
-    <EditText
-        android:id="@+id/DueDate"
-        android:layout_width="369dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="673dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginBottom="58dp"
-        android:ems="10"
-        android:hint="Due date"
-        android:inputType="date"
-        android:textColorHint="@color/white" />
-
     <TextView
         android:id="@+id/createCourceTitle"
         android:layout_width="match_parent"
