@@ -81,6 +81,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
+                android:padding="10dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/edit_text_border"
                 android:drawableEnd="@drawable/baseline_email_24"/>
 
             <View
@@ -112,8 +115,11 @@
 
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:inputType="text"
+                android:layout_marginTop="2dp"
+                android:padding="10dp"
+                android:background="@drawable/edit_text_border"
                 android:drawableEnd="@drawable/baseline_remove_red_eye_24"/>
 
             <View

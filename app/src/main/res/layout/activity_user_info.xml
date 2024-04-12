@@ -59,6 +59,9 @@
             android:id="@+id/editTxtName"
             android:layout_height="wrap_content"
             android:inputType="text"
+            android:layout_marginTop="2dp"
+            android:padding="10dp"
+            android:background="@drawable/edit_text_border"
             android:hint="Enter your name"/>
 
         <View
@@ -76,6 +79,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
+            android:layout_marginTop="2dp"
+            android:padding="10dp"
+            android:background="@drawable/edit_text_border"
             android:id="@+id/editTxtAddress"
             android:hint="Enter your address"/>
 
@@ -106,6 +112,9 @@
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:layout_alignParentEnd="true"
+                android:layout_marginTop="2dp"
+                android:padding="10dp"
+                android:background="@drawable/edit_text_border"
                 android:layout_centerVertical="true"
                 android:id="@+id/editTxtCity"
                 android:hint="Enter your current city"/>
@@ -139,6 +148,9 @@
                 android:inputType="date"
                 android:layout_alignParentEnd="true"
                 android:id="@+id/editTxtDOB"
+                android:layout_marginTop="2dp"
+                android:padding="10dp"
+                android:background="@drawable/edit_text_border"
                 android:layout_centerVertical="true"/>
 
         </RelativeLayout>
@@ -172,6 +184,9 @@
                 android:layout_centerVertical="true"
                 android:inputType="text"
                 android:selectAllOnFocus="true"
+                android:layout_marginTop="2dp"
+                android:padding="10dp"
+                android:background="@drawable/edit_text_border"
                 android:id="@+id/editTxtNIC"
                 android:hint="Enter your NIC number"/>
 
@@ -195,6 +210,9 @@
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
             android:id="@+id/editTxtEmail"
+            android:layout_marginTop="3dp"
+            android:padding="10dp"
+            android:background="@drawable/edit_text_border"
             android:hint="Enter your email"/>
 
         <View
@@ -210,16 +228,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Gender"
+                android:layout_marginTop="12dp"
                 android:alpha="0.8"
                 android:textStyle="bold"/>
 
 
             <Spinner
-                android:layout_width="240dp"
                 android:id="@+id/spinnerGender"
+                android:layout_width="240dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"/>
+                android:layout_centerVertical="true"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/edit_text_border"
+                android:padding="10dp"
+                android:spinnerMode="dropdown" />
 
         </RelativeLayout>
 
@@ -239,6 +262,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
+            android:layout_marginTop="2dp"
+            android:padding="10dp"
+            android:background="@drawable/edit_text_border"
             android:id="@+id/editTxtNumber"
             android:hint="Enter your phone number"/>
 

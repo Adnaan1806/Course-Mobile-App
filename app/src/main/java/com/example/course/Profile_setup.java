@@ -8,6 +8,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 
@@ -19,6 +20,7 @@ import java.util.Objects;
 public class Profile_setup extends AppCompatActivity {
 
     ImageView imageView;
+    Button finishSetupButton;
     FloatingActionButton button;
 
     @Override
@@ -31,6 +33,15 @@ public class Profile_setup extends AppCompatActivity {
         imageView = findViewById(R.id.imageView);
         button = findViewById(R.id.floatingActionButton);
 
+        finishSetupButton = findViewById(R.id.finishSetup);
+
+        finishSetupButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Profile_setup.this, selectCourse.class);
+                startActivity(intent);
+            }
+        });
 
 
         button.setOnClickListener(new View.OnClickListener() {

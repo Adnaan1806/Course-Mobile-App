@@ -31,22 +31,6 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, user_info.class);
             startActivity(intent);
 
-            BranchSelection = findViewById(R.id.BranchSelection);
-
-            adapterItems = new ArrayAdapter<String>(this,R.layout.list_items);
-
-            BranchSelection.setAdapter(adapterItems);
-
-            BranchSelection.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    String item = parent.getItemAtPosition(position).toString();
-                    Toast.makeText(getApplicationContext(),"Branch"+Branches,Toast.LENGTH_SHORT).show();
-
-                }
-
-            });
         });
 
     }
