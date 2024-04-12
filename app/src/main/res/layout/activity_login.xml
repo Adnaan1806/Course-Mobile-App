@@ -157,6 +157,7 @@
                     android:layout_height="35dp"
                     android:layout_marginRight="95dp"
                     android:text="Register"
+                    android:id="@+id/registerButtonMove"
                     android:layout_alignParentEnd="true"/>
             </RelativeLayout>
 

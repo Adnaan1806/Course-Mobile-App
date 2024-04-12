@@ -98,12 +98,10 @@
                             android:textSize="18sp"/>
 
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
+                            android:layout_width="160dp"
+                            android:layout_height="25dp"
+                            android:layout_marginLeft="118dp"
                             android:layout_marginTop="110dp"
-                            android:layout_marginRight="120dp"
-                            android:gravity="center"
                             android:text="LKR 50,000"
                             android:textColor="@color/white"
                             android:textSize="18sp" />
@@ -122,9 +120,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
                             android:layout_marginTop="140dp"
-                            android:layout_marginRight="65dp"
+                            android:layout_marginLeft="103dp"
                             android:gravity="center"
                             android:text="Colombo and Kandy"
                             android:textColor="@color/white"
@@ -144,9 +141,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
                             android:layout_marginTop="170dp"
-                            android:layout_marginRight="170dp"
+                            android:layout_marginLeft="91dp"
                             android:gravity="center"
                             android:text="10 days"
                             android:textColor="@color/white"
@@ -166,9 +162,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
                             android:layout_marginTop="200dp"
-                            android:layout_marginRight="95dp"
+                            android:layout_marginLeft="110dp"
                             android:gravity="center"
                             android:text="15 March 2024"
                             android:textColor="@color/white"
@@ -188,9 +183,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
+                            android:layout_marginLeft="127dp"
                             android:layout_marginTop="230dp"
-                            android:layout_marginRight="80dp"
                             android:gravity="center"
                             android:text="15 March 2024"
                             android:textColor="@color/white"
@@ -210,9 +204,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
+                            android:layout_marginLeft="220dp"
                             android:layout_marginTop="260dp"
-                            android:layout_marginRight="7dp"
                             android:gravity="center"
                             android:text="15 July 2024"
                             android:textColor="@color/white"
@@ -220,6 +213,7 @@
 
                         <Button
                             android:layout_width="170dp"
+                            android:id="@+id/registerCourse"
                             android:layout_height="65dp"
                             android:text="Register Now"
                             android:textStyle="bold"

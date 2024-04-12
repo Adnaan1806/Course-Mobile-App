@@ -68,7 +68,7 @@ public class user_info extends AppCompatActivity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(user_info.this, register_course.class);
+                Intent intent = new Intent(user_info.this, Login.class);
                 startActivity(intent);
 
             }
