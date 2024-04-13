@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayAdapter<String> adapterItems;
     private Button registerButton;
+    private Button adminLoginButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,16 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, user_info.class);
             startActivity(intent);
 
+        });
+
+        adminLoginButton = findViewById(R.id.adminButton);
+        adminLoginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, AdminLogin.class);
+                startActivity(intent);
+
+            }
         });
 
     }
