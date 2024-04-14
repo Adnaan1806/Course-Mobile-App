@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2E232C"
+    tools:context=".AddCourse">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Add Course"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:background="@drawable/gradient1"
+            android:textSize="52dp"
+            android:gravity="center"/>
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Course Name"
+            android:alpha="0.8"
+            android:textSize="20dp"
+            android:textColor="@color/white"/>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="5dp"/>
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:id="@+id/editTxtName"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:layout_marginTop="2dp"
+            android:padding="12dp"
+            android:background="@drawable/edit_text_border"
+            android:hint="Enter your name"/>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Course Fee"
+                android:layout_marginTop="13dp"
+                android:alpha="0.8"
+                android:textSize="20dp"
+                android:textColor="@color/white"/>
+
+
+            <EditText
+                android:id="@+id/editTtTtName"
+                android:layout_width="260dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="120dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/edit_text_border"
+                android:hint="Enter cost"
+                android:inputType="number"
+                android:padding="12dp" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Start Date"
+                android:layout_marginTop="13dp"
+                android:alpha="0.8"
+                android:textSize="20dp"
+                android:textColor="@color/white"/>
+
+
+            <EditText
+                android:id="@+id/editTtName"
+                android:layout_width="260dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="120dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/edit_text_border"
+                android:hint="DD/MM/YYYY"
+                android:inputType="date"
+                android:padding="12dp" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="End Date"
+                android:layout_marginTop="13dp"
+                android:alpha="0.8"
+                android:textSize="20dp"
+                android:textColor="@color/white"/>
+
+
+            <EditText
+                android:id="@+id/editTTtName"
+                android:layout_width="260dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="120dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/edit_text_border"
+                android:hint="DD/MM/YYYY"
+                android:inputType="date"
+                android:padding="12dp" />
+
+        </RelativeLayout>
+
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Branch"
+                android:layout_marginTop="13dp"
+                android:alpha="0.8"
+                android:textSize="20dp"
+                android:textColor="@color/white"/>
+
+
+            <EditText
+                android:id="@+id/editfTtName"
+                android:layout_width="260dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="120dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/edit_text_border"
+                android:hint="Enter branch"
+                android:inputType="number"
+                android:padding="12dp" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Max Participants"
+                android:layout_marginTop="13dp"
+                android:alpha="0.8"
+                android:textSize="20dp"
+                android:textColor="@color/white"/>
+
+
+            <EditText
+                android:layout_width="240dp"
+                android:id="@+id/editffTtName"
+                android:layout_height="50dp"
+                android:inputType="number"
+                android:layout_marginLeft="170dp"
+                android:layout_marginTop="2dp"
+                android:padding="12dp"
+                android:background="@drawable/edit_text_border"
+                android:hint="Enter number"/>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Publish Date"
+                android:layout_marginTop="13dp"
+                android:alpha="0.8"
+                android:textSize="20dp"
+                android:textColor="@color/white"/>
+
+
+            <EditText
+                android:id="@+id/editfttTtName"
+                android:layout_width="250dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="130dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/edit_text_border"
+                android:hint="DD/MM/YYYY"
+                android:inputType="date"
+                android:padding="12dp" />
+
+        </RelativeLayout>
+
+        <Button
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="40dp"
+            android:layout_gravity="center"
+            android:background="@drawable/rounded_corner"
+            android:text="ADD"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="#FFC300"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

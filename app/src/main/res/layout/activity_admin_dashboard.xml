@@ -17,6 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
+        android:gravity="center"
         android:layout_marginTop="32dp">
 
 
@@ -25,6 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Admin"
+            android:layout_marginLeft="60dp"
             android:textColor="@color/white"
             android:textSize="33sp"
             android:id="@+id/selectCourse"/>
@@ -36,7 +38,7 @@
             android:textColor="@color/white"
             android:textSize="45sp"
             android:textStyle="bold"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="35dp"
             android:id="@+id/cAvailable"/>
 
     </RelativeLayout>

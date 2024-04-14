@@ -150,6 +150,7 @@
                 android:id="@+id/editTxtDOB"
                 android:layout_marginTop="2dp"
                 android:padding="10dp"
+                android:hint="DD/MM/YYYY"
                 android:background="@drawable/edit_text_border"
                 android:layout_centerVertical="true"/>
 
