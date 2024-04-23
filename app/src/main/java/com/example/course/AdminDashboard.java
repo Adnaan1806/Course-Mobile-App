@@ -17,11 +17,20 @@ public class AdminDashboard extends AppCompatActivity {
         setContentView(R.layout.activity_admin_dashboard);
 
         D1 = findViewById(R.id.d1);
+        D3 = findViewById(R.id.d3);
 
         D1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminDashboard.this, AddCourse.class);
+                startActivity(intent);
+            }
+        });
+
+        D3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminDashboard.this, SearchUser.class);
                 startActivity(intent);
             }
         });
