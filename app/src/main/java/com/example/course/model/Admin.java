@@ -2,22 +2,22 @@ package com.example.course.model;
 
 public class Admin {
 
-    private int admin_id;
+    private int admin_ID;
     private String admin_email;
     private String admin_password;
 
-    public Admin(int admin_id, String admin_email, String admin_password) {
-        this.admin_id = admin_id;
+    public Admin(int admin_ID, String admin_email, String admin_password) {
+        this.admin_ID = admin_ID;
         this.admin_email = admin_email;
         this.admin_password = admin_password;
     }
 
-    public int getAdmin_id() {
-        return admin_id;
+    public int getAdmin_ID() {
+        return admin_ID;
     }
 
-    public void setAdmin_id(int admin_id) {
-        this.admin_id = admin_id;
+    public void setAdmin_ID(int admin_ID) {
+        this.admin_ID = admin_ID;
     }
 
     public String getAdmin_email() {
@@ -39,14 +39,15 @@ public class Admin {
     @Override
     public String toString() {
         return "Admin{" +
-                "admin_id=" + admin_id +
+                "admin_ID=" + admin_ID +
                 ", admin_email='" + admin_email + '\'' +
                 ", admin_password='" + admin_password + '\'' +
                 '}';
     }
 
-    public String hashPassword(String password) {
+    public String hashPassword() {
         //TODO
-        return "";
+        return "stub";
     }
+
 }

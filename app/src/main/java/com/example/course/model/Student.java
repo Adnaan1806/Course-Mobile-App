@@ -1,36 +1,50 @@
 package com.example.course.model;
 
+
+import android.graphics.Picture;
+import android.graphics.drawable.PictureDrawable;
+
 public class Student {
 
-    private int student_id;
+    private int id;
     private String name;
     private String email;
+    private String login_code;
     private String address;
     private String city;
-    private String login_code;
     private String phone;
     private String gender;
     private String DOB;
 
+    private byte[] profilePicture;
 
-    public Student(int student_id, String name, String email, String address, String city, String login_code, String phone, String gender, String DOB) {
-        this.student_id = student_id;
+    public byte[] getProfilePicture() {
+        return profilePicture;
+    }
+
+    public void setProfilePicture(byte[] profilePicture) {
+        this.profilePicture = profilePicture;
+    }
+
+    public Student(int id, String name, String email, String address, String city, String phone, String gender, String DOB, byte[] profilePic) {
+        this.id = id;
         this.name = name;
         this.email = email;
+        this.login_code = generateLoginCode();
         this.address = address;
         this.city = city;
-        this.login_code = login_code;
         this.phone = phone;
         this.gender = gender;
         this.DOB = DOB;
+        this.profilePicture = profilePic;
     }
 
-    public int getStudent_id() {
-        return student_id;
+    public int getId() {
+        return id;
     }
 
-    public void setStudent_id(int student_id) {
-        this.student_id = student_id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -49,6 +63,14 @@ public class Student {
         this.email = email;
     }
 
+    public String getLogin_code() {
+        return login_code;
+    }
+
+    public void setLogin_code(String login_code) {
+        this.login_code = login_code;
+    }
+
     public String getAddress() {
         return address;
     }
@@ -63,14 +85,6 @@ public class Student {
 
     public void setCity(String city) {
         this.city = city;
-    }
-
-    public String getLogin_code() {
-        return login_code;
-    }
-
-    public void setLogin_code(String login_code) {
-        this.login_code = login_code;
     }
 
     public String getPhone() {
@@ -100,15 +114,22 @@ public class Student {
     @Override
     public String toString() {
         return "Student{" +
-                "student_id=" + student_id +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
+                ", login_code='" + login_code + '\'' +
                 ", address='" + address + '\'' +
                 ", city='" + city + '\'' +
-                ", login_code='" + login_code + '\'' +
                 ", phone='" + phone + '\'' +
                 ", gender='" + gender + '\'' +
                 ", DOB='" + DOB + '\'' +
                 '}';
     }
+
+    public String generateLoginCode(){
+        //TODO generate login code. sending it is handled by another class
+        return " ";
+    }
+
+
 }

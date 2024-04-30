@@ -2,30 +2,30 @@ package com.example.course.model;
 
 public class Course {
 
-    private int course_id;
+    private int course_ID;
     private String course_name;
     private String start_date;
     private String end_date;
     private double fee;
     private String description;
-    private int maximum_part;
+    private int max_p;
 
-    public Course(int course_id, String course_name, String start_date, String end_date, double fee, String description, int maximum_part) {
-        this.course_id = course_id;
+    public Course(int course_ID, String course_name, String start_date, String end_date, double fee, String description, int max_p) {
+        this.course_ID = course_ID;
         this.course_name = course_name;
         this.start_date = start_date;
         this.end_date = end_date;
         this.fee = fee;
         this.description = description;
-        this.maximum_part = maximum_part;
+        this.max_p = max_p;
     }
 
-    public int getCourse_id() {
-        return course_id;
+    public int getCourse_ID() {
+        return course_ID;
     }
 
-    public void setCourse_id(int course_id) {
-        this.course_id = course_id;
+    public void setCourse_ID(int course_ID) {
+        this.course_ID = course_ID;
     }
 
     public String getCourse_name() {
@@ -68,24 +68,24 @@ public class Course {
         this.description = description;
     }
 
-    public int getMaximum_part() {
-        return maximum_part;
+    public int getMax_p() {
+        return max_p;
     }
 
-    public void setMaximum_part(int maximum_part) {
-        this.maximum_part = maximum_part;
+    public void setMax_p(int max_p) {
+        this.max_p = max_p;
     }
 
     @Override
     public String toString() {
         return "Course{" +
-                "course_id=" + course_id +
+                "course_ID='" + course_ID + '\'' +
                 ", course_name='" + course_name + '\'' +
                 ", start_date='" + start_date + '\'' +
                 ", end_date='" + end_date + '\'' +
                 ", fee=" + fee +
                 ", description='" + description + '\'' +
-                ", maximum_part=" + maximum_part +
+                ", max_p=" + max_p +
                 '}';
     }
 }
