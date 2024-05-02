@@ -6,22 +6,17 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.graphics.Bitmap;
 import android.graphics.drawable.PictureDrawable;
-
-
 import com.example.course.model.Branch;
 import com.example.course.model.Course;
 import com.example.course.model.Student;
-
-import java.io.ByteArrayOutputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     private static final String DATABASE_NAME = "JIT";
 
 
@@ -44,7 +39,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 "    phone TEXT,          " +
                 "    gender TEXT,             " +
                 "    DOB TEXT,               " +
-                " profile_picture BLOB " +
+                " profile_picture TEXT " +
                 ");";
         final String sqlForAdmin = "CREATE TABLE Admin (" +
                 "admin_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -99,9 +94,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE Admin");
         sqLiteDatabase.execSQL("DROP TABLE Branch");
         sqLiteDatabase.execSQL("DROP TABLE Course");
+        sqLiteDatabase.execSQL("DROP TABLE Enrollment");
+        sqLiteDatabase.execSQL("DROP TABLE Branch_Course");
         // Create tables again
         onCreate(sqLiteDatabase);
     }
+
 
     /*
     list of methods needed to work with the db:
@@ -127,11 +125,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     add new course
      */
 
-    public void addProfilePicture(int student_id, byte[] pictureBytes) {
+    public void addProfilePicture(int student_id, String picturePath) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("student_ID", student_id);
-        values.put("profile_picture", pictureBytes);
+        values.put("profile_picture", picturePath);
         db.update("Student", values, "student_ID=?", new String[]{String.valueOf(student_id)});
         db.close();
     }
@@ -161,7 +159,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             do {
                 Student student = new Student(cursor.getInt(0), cursor.getString(1), cursor.getString(2),
                         cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6),
-                        cursor.getString(7), cursor.getBlob(8));
+                        cursor.getString(7), cursor.getString(8));
                 students.add(student);
             } while (cursor.moveToNext());
         }
@@ -189,10 +187,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return 1;
     }
 
-    public List<Branch> getBranchesForACourse(Course course) {
+    public List<Branch> getBranchesForACourse(int course_id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.rawQuery("SELECT branch_ID FROM Branch_Course where course_ID = ?", new String[]{String.valueOf(course.getCourse_ID())});
+        Cursor cursor = db.rawQuery("SELECT branch_ID FROM Branch_Course where course_ID = ?", new String[]{String.valueOf(course_id)});
         List<Integer> branch_IDs = new ArrayList<>();
         if (cursor.moveToFirst()) {
             do {
@@ -234,10 +232,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
 
-    public int addStudent(Student student) {
+    public long addStudent(Student student) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        Cursor cursor = db.rawQuery("SELECT * FROM Student WHERE email = ?", new String[]{student.getEmail()});
+        Cursor cursor = db.rawQuery("SELECT student_ID FROM Student WHERE email = ?", new String[]{student.getEmail()});
         if (cursor.getCount() > 0) {
             cursor.close();
             db.close();
@@ -255,10 +253,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put("DOB", student.getDOB());
 
         // Inserting Row
-        db.insert("Student", null, values);
+        long id = db.insert("Student", null, values);
         //2nd argument is String containing nullColumnHack
         db.close(); // Closing database connection
-        return 1;
+        return id;
     }
 
     //NOTE: MIGHT HAVE TO CHANGE Picture datatype
@@ -273,26 +271,27 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return db.update("Student", values, "student_ID" + " = ?", new String[]{Integer.toString(student_id)});
     }
 
-    public boolean verifyEmailExists(String email) {
+    public int verifyEmailExists(String email) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.query("Student", new String[]{"id"}, "email=?",
-                new String[]{email}, null, null, null, null);
-        if (cursor != null) {
-            cursor.close();
-            return true;
+        Cursor cursor = db.query("Student", new String[]{"student_ID"}, "email=?",
+                new String[]{email.trim()}, null, null, null, null);
+        if (cursor.getCount()  >= 1) {
+            cursor.moveToFirst();
+            return cursor.getInt(0);
         } else {
-            return false;
+            return -1;
         }
     }
 
-    public int updateLoginCode(Student student) {
+    public String updateLoginCode(Student student) {
         String code = student.generateLoginCode();
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("student_ID", student.getId());
         values.put("login_code", code);
-        return db.update("Student", values, "student_ID" + " = ?", new String[]{String.valueOf(student.getId())});
+        db.update("Student", values, "student_ID" + " = ?", new String[]{String.valueOf(student.getId())});
+        return code;
 
 
     }
@@ -300,9 +299,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public boolean authStudent(String email, String login_code) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.query("Student", new String[]{"id"}, "email=? AND login_code=?",
+        Cursor cursor = db.query("Student", new String[]{"Student_ID"}, "email=? AND login_code=?",
                 new String[]{email, login_code}, null, null, null, null);
-        if (cursor != null) {
+        if (cursor.getCount()  >= 1) {
             cursor.close();
             return true;
         } else {
@@ -326,7 +325,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         cursor.getString(5),
                         cursor.getString(6),
                         cursor.getString(7),
-                        cursor.getBlob(8)
+                        cursor.getString(8)
                 );
                 students.add(contact);
             } while (cursor.moveToNext());
@@ -381,7 +380,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public Course fetchSingleCourse(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query("Course", new String[]{"course_ID", "course_name", "start_date", "end_date", "fee", "description", "max_p"}, "course_ID=?", new String[]{Integer.toString(id)}, null, null, null);
-        if (cursor != null) {
+        if (cursor.getCount()  >= 1) {
+            cursor.moveToFirst();
             return new Course(cursor.getInt(0),
                     cursor.getString(1),
                     cursor.getString(2),
@@ -398,7 +398,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("branch_name", branch.getBranch_name());
-        values.put("branch_location", branch.getLocation());
+        values.put("location", branch.getLocation());
         db.insert("Branch", null, values);
         db.close();
     }
@@ -406,7 +406,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public Branch getBranchInfo(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM Branch WHERE branch_ID=?", new String[]{String.valueOf(id)});
-        if (cursor != null) {
+        if (cursor.getCount()  >= 1) {
+            cursor.moveToFirst();
             return new Branch(cursor.getInt(0),
                     cursor.getString(1),
                     cursor.getString(2));
@@ -440,20 +441,25 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public boolean authAdmin(String email, String password) {
         SQLiteDatabase db = this.getReadableDatabase();
+        String passwordHash = getPasswordHash(password);
 
-        String password_hash = getPasswordHash(password);
+        String[] projection = {"admin_email"};
+        String selection = "admin_email = ? AND admin_password = ?";
+        String[] selectionArgs = {email, passwordHash};
 
-        Cursor cursor = db.query("Student", new String[]{"id"}, "email=? AND password=?",
-                new String[]{email, password_hash}, null, null, null, null);
-        if (cursor != null) {
-            cursor.close();
-            return true;
-        } else {
-            return false;
-        }
+        Cursor cursor = db.query("Admin", projection, selection, selectionArgs, null, null, null);
+
+        boolean isAdminExists = cursor.getCount() > 0;
+
+        cursor.close();
+        db.close();
+
+        return isAdminExists;
     }
 
-    private String getPasswordHash(String password) {
+
+
+    public String getPasswordHash(String password) {
         try {
             // Create a MessageDigest instance for SHA-256
             MessageDigest digest = MessageDigest.getInstance("SHA-256");

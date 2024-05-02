@@ -87,7 +87,7 @@
 
         <View
             android:layout_width="wrap_content"
-            android:layout_height="20dp"/>
+            android:layout_height="10dp"/>
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -118,7 +118,7 @@
 
         <View
             android:layout_width="wrap_content"
-            android:layout_height="20dp"/>
+            android:layout_height="10dp"/>
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -150,7 +150,7 @@
 
         <View
             android:layout_width="wrap_content"
-            android:layout_height="20dp"/>
+            android:layout_height="10dp"/>
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -166,8 +166,8 @@
                 android:textColor="@color/white"/>
 
 
-            <EditText
-                android:id="@+id/editfTtName"
+            <Spinner
+                android:id="@+id/branches"
                 android:layout_width="260dp"
                 android:layout_height="50dp"
                 android:layout_marginLeft="120dp"
@@ -181,7 +181,7 @@
 
         <View
             android:layout_width="wrap_content"
-            android:layout_height="20dp"/>
+            android:layout_height="10dp"/>
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -212,7 +212,7 @@
 
         <View
             android:layout_width="wrap_content"
-            android:layout_height="20dp"/>
+            android:layout_height="10dp"/>
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -241,6 +241,36 @@
 
         </RelativeLayout>
 
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="10dp"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Description"
+                android:layout_marginTop="13dp"
+                android:alpha="0.8"
+                android:textSize="20dp"
+                android:textColor="@color/white"/>
+
+
+            <EditText
+                android:id="@+id/description"
+                android:layout_width="250dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="130dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/edit_text_border"
+                android:inputType="text"
+                android:padding="12dp" />
+
+        </RelativeLayout>
+
         <Button
             android:layout_width="120dp"
             android:layout_height="60dp"
@@ -249,6 +279,7 @@
             android:background="@drawable/rounded_corner"
             android:text="ADD"
             android:textSize="20dp"
+            android:id="@+id/btnAddCourse"
             android:textStyle="bold"
             android:textColor="#FFC300"/>
 

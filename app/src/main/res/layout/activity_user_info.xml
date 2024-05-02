@@ -280,6 +280,7 @@
             android:text="REGISTER"
             android:textStyle="bold"
             android:background="@color/brown"
+            android:onClick="register"
             android:textColor="@color/white"
             app:cornerRadius="32dp" />
 
@@ -303,6 +304,7 @@
                 android:layout_width="70dp"
                 android:id="@+id/loginButton"
                 android:layout_height="20dp"
+                android:onClick="redirectToLogin"
                 android:layout_alignParentEnd="true"
                 android:text="Login"
                 android:textStyle="bold"

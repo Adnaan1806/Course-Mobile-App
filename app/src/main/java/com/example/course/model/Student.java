@@ -1,8 +1,6 @@
 package com.example.course.model;
 
-
-import android.graphics.Picture;
-import android.graphics.drawable.PictureDrawable;
+import com.example.course.utils.OTPGenerator;
 
 public class Student {
 
@@ -16,18 +14,27 @@ public class Student {
     private String gender;
     private String DOB;
 
-    private byte[] profilePicture;
+    private String profilePicture;
 
-    public byte[] getProfilePicture() {
+    //path
+    public String getProfilePicture() {
         return profilePicture;
     }
 
-    public void setProfilePicture(byte[] profilePicture) {
+    public void setProfilePicture(int id, String profilePicture) {
+
+        this.id = id;
         this.profilePicture = profilePicture;
+
     }
 
-    public Student(int id, String name, String email, String address, String city, String phone, String gender, String DOB, byte[] profilePic) {
+    public Student(int id) {
         this.id = id;
+    }
+
+
+
+    public Student(String name, String email, String address, String city, String phone, String gender, String DOB) {
         this.name = name;
         this.email = email;
         this.login_code = generateLoginCode();
@@ -36,7 +43,18 @@ public class Student {
         this.phone = phone;
         this.gender = gender;
         this.DOB = DOB;
-        this.profilePicture = profilePic;
+    }
+
+    public Student(int id, String name, String email, String address, String city, String phone, String gender, String DOB,String profilePicture) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.login_code = generateLoginCode();
+        this.address = address;
+        this.city = city;
+        this.phone = phone;
+        this.gender = gender;
+        this.profilePicture = profilePicture;
     }
 
     public int getId() {
@@ -127,9 +145,8 @@ public class Student {
     }
 
     public String generateLoginCode(){
-        //TODO generate login code. sending it is handled by another class
-        return " ";
+        OTPGenerator otpGenerator = new OTPGenerator();
+        return otpGenerator.generateOTP();
+
     }
-
-
 }

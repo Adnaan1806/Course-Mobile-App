@@ -2,17 +2,28 @@ package com.example.course;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.GridLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupMenu;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.course.database.DatabaseHandler;
+import com.example.course.model.Course;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class selectCourse extends AppCompatActivity {
 
@@ -24,75 +35,107 @@ public class selectCourse extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_course);
 
-        C1 = findViewById(R.id.c1);
-        C2 = findViewById(R.id.c2);
-        C3 = findViewById(R.id.c3);
-        C4 = findViewById(R.id.c4);
-        C5 = findViewById(R.id.c5);
-        C6 = findViewById(R.id.c6);
-        C7 = findViewById(R.id.c7);
-        C8 = findViewById(R.id.c8);
+        DatabaseHandler databaseHandler = new DatabaseHandler(this);
 
-        //click on each cards to navigate to register_course activity(course details page)
-        C1.setOnClickListener(new View.OnClickListener() {
+        //get all courses and put into view
+        List<Course> courses = databaseHandler.fetchCourses();
+        EditText searchBar = findViewById(R.id.searchCourse);
+
+        renderCourses(courses);
+        searchBar.addTextChangedListener(new TextWatcher() {
+
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(selectCourse.this, register_course.class);
-                startActivity(intent);
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String query = searchBar.getText().toString();
+                List<Course> searchResults = runSearch(query);
+                if (searchResults.size() == 0) {
+                    Toast.makeText(selectCourse.this, "No Matching Courses Found", Toast.LENGTH_SHORT).show();
+                }
+                renderCourses(searchResults);
+
             }
         });
 
-        C2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(selectCourse.this, register_course.class);
-                startActivity(intent);
-            }
-        }); // likewise can do for other cards
+    }
 
-        ImageView accountImage = findViewById(R.id.account_image);
+    private List<Course> runSearch(String query) {
+        DatabaseHandler databaseHandler = new DatabaseHandler(this);
+        return databaseHandler.queryCoursesByName(query);
+    }
 
-        // Set OnClickListener to the ImageView
-        accountImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Create PopupMenu
-                PopupMenu popupMenu = new PopupMenu(selectCourse.this, v);
 
-                // Inflate menu resource
-                popupMenu.getMenuInflater().inflate(R.menu.menu, popupMenu.getMenu());
+    private void renderCourses(List<Course> courses) {
+        //clear any rendered courses
+        GridLayout linearLayout = findViewById(R.id.gridLayout);
+        linearLayout.removeAllViews();
 
-                // Set item click listener
-                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        // Handle menu item click
-                        int itemId = item.getItemId();
-                        if (itemId == R.id.menu_logout) {
-                            // Handle logout action
-                            // Start LogoutActivity or perform logout logic
-                            startActivity(new Intent(selectCourse.this, MainActivity.class));
-                            return true;
-                        } else if (itemId == R.id.menu_login) {
-                            // Handle login action
-                            // Start LoginActivity or perform login logic
-                            startActivity(new Intent(selectCourse.this, Login.class));
-                            return true;
-                        } else if (itemId == R.id.menu_register) {
-                            // Handle register action
-                            // Start RegisterActivity or perform registration logic
-                            startActivity(new Intent(selectCourse.this, user_info.class));
-                            return true;
-                        }
-                        return false;
-                    }
-                });
+        for (Course course : courses) {
+            // Create a new CardView
+            CardView cardView = new CardView(this);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+            );
+            params.setMargins(12, 12, 12, 12); // Add margins to the CardView
+            cardView.setLayoutParams(params);
 
-                // Show the PopupMenu
-                popupMenu.show();
-            }
+            // Set card corner radius and elevation
+            cardView.setRadius(12);
+            cardView.setCardElevation(6);
 
-        });
+            // Create a LinearLayout for the CardView content
+            LinearLayout innerLayout = new LinearLayout(this);
+            innerLayout.setLayoutParams(new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.MATCH_PARENT
+            ));
+            innerLayout.setOrientation(LinearLayout.VERTICAL);
+            innerLayout.setPadding(16, 16, 16, 16); // Add padding to the content
+
+            // Create TextView for course name
+            TextView textViewCourseName = new TextView(this);
+            textViewCourseName.setLayoutParams(new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+            ));
+            textViewCourseName.setText(course.getCourse_name());
+            textViewCourseName.setTextSize(20);
+            textViewCourseName.setTextColor(ContextCompat.getColor(this, R.color.black));
+
+            // Add TextView to inner layout
+            innerLayout.addView(textViewCourseName);
+
+            cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(selectCourse.this, register_course.class);
+                    intent.putExtra("course_ID", course.getCourse_ID());
+                    intent.putExtra("course_name", course.getCourse_name());
+                    intent.putExtra("start_date", course.getStart_date());
+                    intent.putExtra("end_date", course.getEnd_date());
+                    intent.putExtra("fee", course.getFee());
+                    intent.putExtra("description", course.getDescription());
+                    intent.putExtra("max_p", course.getMax_p());
+                    startActivity(intent);
+                }
+            });
+            // Add inner layout to CardView
+            cardView.addView(innerLayout);
+
+            // Add CardView to the LinearLayout
+
+            linearLayout.addView(cardView);
+        }
 
     }
 }

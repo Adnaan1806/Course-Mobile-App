@@ -80,6 +80,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
+                android:id="@+id/username"
                 android:padding="10dp"
                 android:layout_marginTop="2dp"
                 android:background="@drawable/edit_text_border"
@@ -104,6 +105,7 @@
                 android:inputType="text"
                 android:layout_marginTop="2dp"
                 android:padding="10dp"
+                android:id="@+id/password"
                 android:background="@drawable/edit_text_border"
                 android:drawableEnd="@drawable/baseline_remove_red_eye_24"/>
 

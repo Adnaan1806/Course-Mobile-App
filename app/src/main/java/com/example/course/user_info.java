@@ -1,5 +1,6 @@
 package com.example.course;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -14,76 +15,126 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.course.database.DatabaseHandler;
+import com.example.course.model.Student;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class user_info extends AppCompatActivity {
 
-    private Button registerButton;
-    private Button loginButton;
-    private Spinner spinner;
-
-    EditText name, email, phone, address, city, dob, nic, gender;
-
+     DatabaseHandler dbHelper;
+    String[] genders = {"Male", "Female", "Other"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, genders);
         setContentView(R.layout.activity_user_info);
 
-        name = findViewById(R.id.editTxtName);
-        email = findViewById(R.id.editTxtEmail);
-        phone = findViewById(R.id.editTxtNumber);
-        address = findViewById(R.id.editTxtAddress);
-        city = findViewById(R.id.editTxtCity);
-        dob = findViewById(R.id.editTxtDOB);
-        nic = findViewById(R.id.editTxtNIC);
-        spinner = findViewById(R.id.spinnerGender);
+        dbHelper = new DatabaseHandler(this);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        Spinner spinner = findViewById(R.id.spinnerGender);
+        spinner.setAdapter(adapter);
+    }
+
+    public void redirectToLogin(View view) {
+        Intent intent = new Intent(this, Login.class);
+        startActivity(intent);
+    }
+
+    public void register(View view) {
+        if (validateFields()) {
+
+            EditText nameEditText = findViewById(R.id.editTxtName);
+            EditText emailEditText = findViewById(R.id.editTxtEmail);
+            EditText addressEditText = findViewById(R.id.editTxtAddress);
+            EditText cityEditText = findViewById(R.id.editTxtCity);
+            EditText phoneEditText = findViewById(R.id.editTxtNumber);
+            Spinner genderSpinner = findViewById(R.id.spinnerGender);
+            EditText dobEditText = findViewById(R.id.editTxtDOB);
+
+            String name = nameEditText.getText().toString();
+            String email = emailEditText.getText().toString();
+            String address = addressEditText.getText().toString();
+            String city = cityEditText.getText().toString();
+            String phone = phoneEditText.getText().toString();
+            String gender = genderSpinner.getSelectedItem().toString();
+            String dob = dobEditText.getText().toString();
 
 
-        //entering values to spinner
-       spinner = findViewById(R.id.spinnerGender);
-       spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-           @Override
-           public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-               String item = adapterView.getItemAtPosition(position).toString();
-               //Toast.makeText(user_info.this,"Selected Item: "+ item, Toast.LENGTH_SHORT).show();
-           }
+            Toast.makeText(this, name , Toast.LENGTH_SHORT).show();
 
-           @Override
-           public void onNothingSelected(AdapterView<?> adapterView) {
-
-           }
-       });
-
-       ArrayList<String> options = new ArrayList<>();
-         options.add("Male");
-         options.add("Female");
-         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, options);
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            spinner.setAdapter(adapter);
-
-
-          //directing to next page by clicking the register button
-        registerButton = findViewById(R.id.registerUserButton);
-        registerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(user_info.this, Login.class);
+            Student student = new Student(name, email, address, city,phone,gender,dob);
+            try{
+                DatabaseHandler dbHandler = new DatabaseHandler(this);
+                long id = dbHandler.addStudent(student);
+                dbHandler.close();
+                if(id == -1){
+                    showErrorMessage("Email already exists");
+                    return;
+                }
+                Intent intent = new Intent(this, Profile_setup.class);
+                intent.putExtra("student_id", id);
                 startActivity(intent);
-
+            } catch (Exception e) {
+                showErrorMessage(e.getMessage());
             }
-        });
 
-        loginButton = findViewById(R.id.loginButton);
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(user_info.this, Login.class);
-                startActivity(intent);
-
-            }
-        });
+        }
 
     }
 
+    private boolean validateFields() {
+        EditText nameEditText = findViewById(R.id.editTxtName);
+        EditText emailEditText = findViewById(R.id.editTxtEmail);
+        EditText addressEditText = findViewById(R.id.editTxtAddress);
+        EditText cityEditText = findViewById(R.id.editTxtCity);
+        EditText phoneEditText = findViewById(R.id.editTxtNumber);
+        Spinner genderSpinner = findViewById(R.id.spinnerGender);
+        EditText dobEditText = findViewById(R.id.editTxtDOB);
+        String name = nameEditText.getText().toString();
+        String email = emailEditText.getText().toString();
+        String address = addressEditText.getText().toString();
+        String city = cityEditText.getText().toString();
+        String phone = phoneEditText.getText().toString();
+        String gender = genderSpinner.getSelectedItem().toString();
+        String dob = dobEditText.getText().toString();
+
+
+
+        if (name.isEmpty() || email.isEmpty() || address.isEmpty() || city.isEmpty() || phone.isEmpty()) {
+            showErrorMessage("All fields are required");
+            return false;
+        }
+        else if (phone.length() != 10) {
+
+            showErrorMessage(String.valueOf(phone.length()));
+            return false;
+        }
+        SimpleDateFormat sdfrmt = new SimpleDateFormat("MM/dd/yyyy");
+        sdfrmt.setLenient(false);
+        /* Create Date object
+         * parse the string into date
+         */
+        try
+        {
+            Date javaDate = sdfrmt.parse(dob);
+        }
+        /* Date format is invalid */
+        catch (ParseException e)
+        {
+            showErrorMessage("Invalid Date of Birth");
+            return false;
+        }
+        return true;
+
+    }
+
+    private void showErrorMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+
+    }
 }

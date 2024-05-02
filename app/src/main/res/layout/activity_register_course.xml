@@ -80,6 +80,7 @@
                             android:layout_height="50dp"
                             android:textSize="30sp"
                             android:text="Business"
+                            android:id="@+id/courseName"
                             android:background="@drawable/rounded_corner"
                             android:gravity="center"
                             android:textStyle="bold"
@@ -103,6 +104,7 @@
                             android:layout_marginLeft="118dp"
                             android:layout_marginTop="110dp"
                             android:text="LKR 50,000"
+                            android:id="@+id/fee"
                             android:textColor="@color/white"
                             android:textSize="18sp" />
 
@@ -122,6 +124,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="140dp"
                             android:layout_marginLeft="103dp"
+                            android:id="@+id/branches"
                             android:gravity="center"
                             android:text="Colombo and Kandy"
                             android:textColor="@color/white"
@@ -134,15 +137,16 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="170dp"
                             android:gravity="center"
-                            android:text="Duration :"
+                            android:text="Participants :"
                             android:textColor="@color/white"
                             android:textSize="18sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
+                            android:id="@+id/maxpp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="170dp"
-                            android:layout_marginLeft="91dp"
+                            android:layout_marginLeft="115dp"
                             android:gravity="center"
                             android:text="10 days"
                             android:textColor="@color/white"
@@ -166,6 +170,7 @@
                             android:layout_marginLeft="110dp"
                             android:gravity="center"
                             android:text="15 March 2024"
+                            android:id="@+id/startingDate"
                             android:textColor="@color/white"
                             android:textSize="18sp" />
 
@@ -176,14 +181,15 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="230dp"
                             android:gravity="center"
-                            android:text="Published on :"
+                            android:text="Description :"
                             android:textColor="@color/white"
                             android:textSize="18sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="127dp"
+                            android:layout_marginLeft="117dp"
+                            android:id="@+id/description"
                             android:layout_marginTop="230dp"
                             android:gravity="center"
                             android:text="15 March 2024"
@@ -207,6 +213,7 @@
                             android:layout_marginLeft="220dp"
                             android:layout_marginTop="260dp"
                             android:gravity="center"
+                            android:id="@+id/endingDate"
                             android:text="15 July 2024"
                             android:textColor="@color/white"
                             android:textSize="18sp" />
